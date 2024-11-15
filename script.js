@@ -1,65 +1,70 @@
- function updateTime() {
-      // Sydney
-      const sydneyElement = document.querySelector("#sydney");
-      if (sydneyElement) {
-        const sydneyDateElement = sydneyElement.querySelector(".date");
-        const sydneyTimeElement = sydneyElement.querySelector(".time");
-        const sydneyTime = moment().tz("Australia/Sydney");
+function updateTime() {
+  updateCityTime("Australia/Sydney", "#sydney");
+  updateCityTime("Europe/Dublin", "#dublin");
+  updateCityTime("America/New_York", "#philadelphia");
+}
 
-        sydneyDateElement.innerHTML = sydneyTime.format("MMMM Do YYYY");
-        sydneyTimeElement.innerHTML = sydneyTime.format(
-          "h:mm:ss [<small>]A[</small>]"
-        );
-      }
+function updateCityTime(timezone, elementId) {
+  const element = document.querySelector(elementId);
+  const dateElement = element.querySelector(".date");
+  const timeElement = element.querySelector(".time");
 
-      // Dublin
-      const dublinElement = document.querySelector("#dublin");
-      if (dublinElement) {
-        const dublinDateElement = dublinElement.querySelector(".date");
-        const dublinTimeElement = dublinElement.querySelector(".time");
-        const dublinTime = moment().tz("Europe/Dublin");
+  const time = moment().tz(timezone);
+  dateElement.innerHTML = time.format("MMMM Do YYYY");
+  timeElement.innerHTML = time.format("h:mm:ss [<small>]A[</small>]");
+}
 
-        dublinDateElement.innerHTML = dublinTime.format("MMMM Do YYYY");
-        dublinTimeElement.innerHTML = dublinTime.format(
-          "h:mm:ss [<small>]A[</small>]"
-        );
-      }
+function updateSelectedCity(event) {
+  const cityTimeZone = event.target.value;
+  const citiesContainer = document.querySelector("#cities");
 
-      // Philadelphia
-      const philadelphiaElement = document.querySelector("#philadelphia");
-      if (philadelphiaElement) {
-        const philadelphiaDateElement = philadelphiaElement.querySelector(".date");
-        const philadelphiaTimeElement = philadelphiaElement.querySelector(".time");
-        const philadelphiaTime = moment().tz("America/New_York");
+  // Hide all city elements by default
+  const allCityElements = document.querySelectorAll(".city");
+  allCityElements.forEach((cityElement) => {
+    cityElement.style.display = "none";  // Hide all cities
+  });
 
-        philadelphiaDateElement.innerHTML = philadelphiaTime.format("MMMM Do YYYY");
-        philadelphiaTimeElement.innerHTML = philadelphiaTime.format(
-          "h:mm:ss [<small>]A[</small>]"
-        );
-      }
-    }
+  // Check if 'Show All Cities' is selected
+  if (cityTimeZone === "all-cities") {
+    // Show all cities again
+    allCityElements.forEach((cityElement) => {
+      cityElement.style.display = "block";  // Show all cities
+    });
+    return; // Exit function if 'Show All Cities' is selected
+  }
 
-    function updateCity(event) {
-      let cityTimeZone = event.target.value;
-      if (cityTimeZone === "current") {
-        cityTimeZone = moment.tz.guess();
-      }
+  // If 'current-location' is selected, get the user's local timezone
+  const timezone = cityTimeZone === "current-location" ? moment.tz.guess() : cityTimeZone;
+  const cityName = timezone.split("/")[1].replace("_", " ");
 
-      const cityName = cityTimeZone.replace("_", " ").split("/")[1];
-      const cityTime = moment().tz(cityTimeZone);
-      const citiesElement = document.querySelector("#cities");
+  // Create a new city display element for the selected city
+  const selectedCityElement = document.querySelector(`#selected-city`);
+  if (selectedCityElement) {
+    selectedCityElement.remove();  // Remove any previous selected city element
+  }
 
-      citiesElement.innerHTML = `
-        <div class="city">
-          <div>
-            <h2>${cityName}</h2>
-            <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
-          </div>
-          <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format("A")}</small></div>
-        </div>
-      `;
-    }
+  // Create new element to display the selected city's time
+  const cityElement = document.createElement("div");
+  cityElement.setAttribute("id", "selected-city");
+  cityElement.classList.add("city");
+  cityElement.innerHTML = `
+    <div>
+      <h2>${cityName}</h2>
+      <div class="date">${moment().tz(timezone).format("MMMM Do YYYY")}</div>
+      <div class="time">${moment().tz(timezone).format("h:mm:ss [<small>]A[</small>]")}</div>
+    </div>
+  `;
+  citiesContainer.insertBefore(cityElement, citiesContainer.firstChild);
 
-    // Initialize and set interval
-    updateTime();
-    setInterval(updateTime, 1000);
+  // Show the selected city's time
+  const selectedCity = document.querySelector(`#${cityTimeZone}`);
+  if (selectedCity) {
+    selectedCity.style.display = "block";
+  }
+}
+
+document.querySelector("#city").addEventListener("change", updateSelectedCity);
+
+// Set interval to update times every second
+updateTime();
+setInterval(updateTime, 1000);

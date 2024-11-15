@@ -1,65 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
 
-    <title>World Clock - Tamyra Selvarajan</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>World Clock</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Clock - Tamyra Selvarajan</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
+</head>
 
-      <!-- City Selection Dropdown -->
-      <select id="city-select">
-        <option value="">Select a city...</option>
-        <option value="current-location">My Current Location</option>
-        <option value="Australia/Sydney">Sydney, Australia 🇦🇺 </option>
-        <option value="Europe/Dublin">Dublin, Ireland 🇮🇪</option>
-        <option value="North America/New_York">Philadelphia, Pennsylvania, USA 🇺🇸</option>
-      </select>
+<body>
+  <div class="container">
+    <h1>World Clock</h1>
 
-     <div id="cities">
+    <!-- City Selection Dropdown -->
+    <select id="city">
+      <option value="current-location">Your Current Location</option>
+      <option value="Australia/Sydney">Sydney</option>
+      <option value="Europe/Dublin">Dublin</option>
+      <option value="America/New_York">New York</option>
+      <option value="all-cities">Show All Cities</option>
+    </select>
+
+
+    <!-- Predefined Cities -->
+    <div id="cities">
       <div class="city" id="sydney">
-        <div>
-          <h2>Sydney, Australia 🇦🇺</h2>
-          <div class="date" id="syd-date">Date</div>
-        </div>
-        <div class="time" id="syd-time">Time</div>
-        <small id="syd-ampm">AM/PM</small>
+        <h2>Sydney, Australia 🇦🇺</h2>
+        <div class="date"></div>
+        <div class="time"></div>
       </div>
 
       <div class="city" id="dublin">
-        <div>
-          <h2>Dublin, Ireland 🇮🇪</h2>
-          <div class="date" id="dublin-date">Date</div>
-        </div>
-        <div class="time" id="dublin-time">Time</div>
-        <small id="dublin-ampm">AM/PM</small>
+        <h2>Dublin, Ireland 🇮🇪</h2>
+        <div class="date"></div>
+        <div class="time"></div>
       </div>
 
       <div class="city" id="philadelphia">
-        <div>
-          <h2>Philadelphia, USA 🇺🇸</h2>
-          <div class="date" id="philadelphia-date">Date</div>
-        </div>
-        <div class="time" id="philadelphia-time">Time</div>
-        <small id="philadelphia-ampm">AM/PM</small>
-      </div>
-      </div>
+        <h2>Philadelphia, USA 🇺🇸</h2>
+        <div class="date"></div>
+        <div class="time"></div>
 
-      <br />
-      <footer>
-        This project was coded with ❤️ by Tamyra Selvarajan and is
-        <a href="https://github.com/tamyra-coder" target="_blank">open sourced on GitHub</a>
-      </footer>
+      </div>
     </div>
 
-    <!-- JavaScript File -->
-    <script src="script.js"></script>
-  </body>
+    <footer>
+      This project was coded with ❤️ by Tamyra Selvarajan and is
+      <a href="https://github.com/tamyra-coder" target="_blank">open sourced on GitHub</a>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
