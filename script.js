@@ -1,9 +1,22 @@
 function updateTime() {
-  // Los Angeles
+  
+  let kualaLumpurElement = document.querySelector("#kuala-lumpur");
+  if (kualaLumpurElement) {
+    kualaLumpurDateElement = kualaLumpurElement.querySelector(".date");
+    let kualaLumpurTimeElement = kualaLumpurElement.querySelector(".time");
+    let kualaLumpurTime = moment().tz("Asia/Malaysia");
+
+    kualaLumpurDateElement.innerHTML = kualaLumpurTime.format("MMMM	Do YYYY");
+    kualaLumpurTimeElement.innerHTML = kualaLumpurTime.format(
+      "h:mm:ss [<small>]A[</small>]"
+    );
+  }
+
+
   let dublinElement = document.querySelector("#dublin");
   if (dublinElement) {
     dublinDateElement = dublinElement.querySelector(".date");
-    let dublinTimeElement = losAngelesElement.querySelector(".time");
+    let dublinTimeElement = dublinElement.querySelector(".time");
     let dublinTime = moment().tz("Europe/Dublin");
 
     dublinDateElement.innerHTML = dublinTime.format("MMMM	Do YYYY");
@@ -13,14 +26,14 @@ function updateTime() {
   }
 
   // Paris
-  let philadelphiaElement = document.querySelector("#paris");
+  let philadelphiaElement = document.querySelector("#philadelphia");
   if (philadelphiaElement) {
-    let philadelphiaDateElement = parisElement.querySelector(".date");
-    let philadelphiaTimeElement = parisElement.querySelector(".time");
-    let philadelphiaTime = moment().tz("North America/Philadelphia");
+    let philadelphiaDateElement = philadelphiaElement.querySelector(".date");
+    let philadelphiaTimeElement = philadelphiaElement.querySelector(".time");
+    let philadelphiaTime = moment().tz("North America/Pennsylvania");
 
-    philadelphiaDateElement.innerHTML = parisTime.format("MMMM	Do YYYY");
-    philadelphiaTimeElement.innerHTML = parisTime.format(
+    philadelphiaDateElement.innerHTML = philadelphiaTime.format("MMMM	Do YYYY");
+    philadelphiaTimeElement.innerHTML = philadelphiaTime.format(
       "h:mm:ss [<small>]A[</small>]"
     );
   }
