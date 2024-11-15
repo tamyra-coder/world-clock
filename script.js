@@ -1,13 +1,13 @@
 function updateTime() {
   
-  let kualaLumpurElement = document.querySelector("#kuala-lumpur");
-  if (kualaLumpurElement) {
-    kualaLumpurDateElement = kualaLumpurElement.querySelector(".date");
-    let kualaLumpurTimeElement = kualaLumpurElement.querySelector(".time");
-    let kualaLumpurTime = moment().tz("Asia/Malaysia");
+  let sydneyElement = document.querySelector("#sydney");
+  if (sydneyElement) {
+    sydneyDateElement = sydneyElement.querySelector(".date");
+    let sydneyTimeElement = sydneyElement.querySelector(".time");
+    let sydneyTime = moment().tz("Oceania/Australia");
 
-    kualaLumpurDateElement.innerHTML = kualaLumpurTime.format("MMMM	Do YYYY");
-    kualaLumpurTimeElement.innerHTML = kualaLumpurTime.format(
+    sydneyDateElement.innerHTML = sydneyTime.format("MMMM	Do YYYY");
+    sydneyTimeElement.innerHTML = sydneyTime.format(
       "h:mm:ss [<small>]A[</small>]"
     );
   }
